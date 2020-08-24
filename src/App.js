@@ -1,8 +1,14 @@
 import React from 'react'
+import Header from './layout/Header/Header'
+
+import { BrowserRouter } from 'react-router-dom';
+import "./App.css";
 
 const App = () => {
   return (
-   <h1>hello</h1>
+   <BrowserRouter>
+    <Header />
+   </BrowserRouter>
   )
 }
 
