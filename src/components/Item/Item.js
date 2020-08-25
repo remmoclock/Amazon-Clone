@@ -5,7 +5,6 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  Button,
   CardActions,
 } from "@material-ui/core";
 import CustomButton from "../CustomButton/CustomButton";
@@ -14,6 +13,8 @@ const styles = makeStyles({
   card: {
     display: "flex",
     flexDirection: "column",
+    minHeight: "47rem",
+    justifyContent: "space-between",
   },
   cardImg: {
     height: "20rem",
@@ -23,35 +24,35 @@ const styles = makeStyles({
     width: "100%",
   },
   cardPrice: {
-      fontSize: "2rem",
-      marginBottom: "2rem"
+    fontSize: "2rem",
+    marginBottom: "2rem",
   },
   cardDescription: {
-      fontWeight: 400,
-      fontSize: "1.3rem",
-      marginBottom: "2rem"
-  }
+    fontWeight: 400,
+    fontSize: "1.3rem",
+    marginBottom: "2rem",
+  },
+  cardStar: {
+    fill: "#f3cf77",
+    height: "2rem",
+    width: "2rem",
+  },
 });
 
-function Item() {
+function Item({ imageURL, price, name, rating }) {
   const classes = styles();
   return (
     <Card className={classes.card}>
       <CardActionArea>
         <div style={{ padding: "2rem" }}>
-          <img
-            className={classes.cardImg}
-            src="https://m.media-amazon.com/images/I/71iO2R+CLjL._AC._SR360,460.jpg"
-            alt=""
-          />
+          <img className={classes.cardImg} src={imageURL} alt="" />
         </div>
         <CardContent>
-          <h1 className={classes.cardPrice}>500$</h1>
-          <h2 className={classes.cardDescription}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat,
-            tempora?
-          </h2>
-          <StarRateIcon />
+          <h1 className={classes.cardPrice}>{price}</h1>
+          <h2 className={classes.cardDescription}>{name}</h2>
+          {new Array(rating).fill().map((star, index) => (
+            <StarRateIcon className={classes.cardStar} key={index} />
+          ))}
         </CardContent>
       </CardActionArea>
       <CardActions>

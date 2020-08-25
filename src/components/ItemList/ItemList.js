@@ -1,26 +1,25 @@
-import React from 'react'
-import { makeStyles, Grid } from '@material-ui/core'
-import Item from '../Item/Item'
+import React from "react";
+import { makeStyles, Grid } from "@material-ui/core";
+import Item from "../Item/Item";
+import { data } from "../../data/data";
 
-// const styles = makeStyles({
-//     home: {
-//         maxWidth: 1300,
-//         margin: "0 auto"
-//     },
-//     homePic: {
-//         width: "100%",
-//         objectFit: "contain",
-//     }
-// });
+const styles = makeStyles({
+    itemList: {
+        marginTop: "-20rem"
+    },
+});
 
 function ItemList() {
-    return (
-        <Grid container spacing={3}>
-            <Grid md={3}>
-                <Item />
-            </Grid>
+    const classes = styles();
+  return (
+    <Grid className={classes.itemList} container spacing={3}>
+      {data.map((item) => (
+        <Grid key={item.id} item md={3}>
+          <Item imageURL={item.imageURL} price={item.price} name={item.name} rating={item.rating}/>
         </Grid>
-    )
+      ))}
+    </Grid>
+  );
 }
 
-export default ItemList
+export default ItemList;
