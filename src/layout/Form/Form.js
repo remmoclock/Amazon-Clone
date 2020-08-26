@@ -1,8 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import logo2 from "../../assets/amazon-logo2.png";
 import CustomButton from "../../components/CustomButton/CustomButton";
+import { useFormik } from "formik";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
+import { loginUser } from "../../firebase/firebase";
 
 const styles = makeStyles({
   login: {
@@ -58,18 +61,48 @@ const styles = makeStyles({
     position: "relative",
     marginBottom: "2rem",
   },
+  errorsForm: {
+    color: "#D8000C",
+    backgroundColor: "#FFBABA",
+    fontSize: "1.3rem",
+    display: "flex",
+    alignItems: "center",
+    padding: "1rem",
+  },
 });
 
-const Form = ({ history }) => {
-  const classes = styles();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const handleSubmit = (e) => {
-      e.preventDefault()
-      console.log(email, password)
+// VALIDATION
+const validate = (values) => {
+  const errors = {};
+  if (!values.email) {
+    errors.email = "Email invalide";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = "Email invalide";
   }
+  if (!values.password) {
+    errors.password = "Mot de passe invalide";
+  } else if (values.password.length < 6) {
+    errors.password = "Minimum 6 caractères.";
+  }
+  return errors;
+};
 
+const Form = ({ history }) => {
+  // HOOKS
+  const classes = styles();
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validate,
+    onSubmit: (values) => {
+      loginUser(values.email, values.password);
+      history.push("/");
+    },
+  });
 
+  // JSX
   return (
     <section className={classes.login}>
       <div className={classes.container}>
@@ -79,15 +112,39 @@ const Form = ({ history }) => {
           </Link>
         </div>
         <div className={classes.formContainer}>
-          <form onSubmit={handleSubmit} className={classes.loginForm}>
+          <form onSubmit={formik.handleSubmit} className={classes.loginForm}>
             <h1 className={classes.loginTitle}>S'identifier</h1>
             <div className={classes.inputForm}>
               <label className={classes.loginLabel}>Adresse e-email</label>
-              <input value={email} onChange={(e) => setEmail(e.target.value)} name="email" type="email" />
+              <input
+                value={formik.values.email}
+                name="email"
+                type="email"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.email && formik.errors.email && (
+                <h1 className={classes.errorsForm}>
+                  <ErrorOutlineIcon />
+                  {formik.errors.email}
+                </h1>
+              )}
             </div>
             <div className={classes.inputForm}>
               <label className={classes.loginLabel}>Mot de passe</label>
-              <input value={password} onChange={(e) => setPassword(e.target.value)} name="password" type="password" />
+              <input
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                name="password"
+                type="password"
+              />
+              {formik.touched.password && formik.errors.password && (
+                <h1 className={classes.errorsForm}>
+                  <ErrorOutlineIcon />
+                  {formik.errors.password}
+                </h1>
+              )}
             </div>
             <div className={classes.inputForm}>
               <CustomButton type="submit" text="S'identifier" />
@@ -98,7 +155,11 @@ const Form = ({ history }) => {
         <div className={classes.divider}>
           <span>Nouveau chez Amazon ?</span>
         </div>
-        <CustomButton onClick={() => history.push('/register')} type="button" text="Créer votre compte Amazon" />
+        <CustomButton
+          onClick={() => history.push("/register")}
+          type="button"
+          text="Créer votre compte Amazon"
+        />
       </div>
     </section>
   );

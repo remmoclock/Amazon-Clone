@@ -2,100 +2,33 @@ import React from "react";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import logo2 from "../../assets/amazon-logo2.png";
 import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core";
+import { useStyles } from "./RegisterStyles";
 import { useFormik } from "formik";
-
-export const useStyles = makeStyles({
-  login: {
-    height: "100vh",
-    backgroundColor: "#fff",
-  },
-  loginLogo: {
-    width: "33%",
-    objectFit: "contain",
-  },
-  container: {
-    width: "35rem",
-    margin: "0 auto",
-    display: "flex",
-    flexDirection: "column",
-  },
-  formContainer: {
-    border: "1px solid #ccc",
-    borderRadius: 3,
-    marginBottom: "3rem",
-  },
-  loginForm: {
-    width: "100%",
-    padding: "2rem",
-    display: "flex",
-    flexDirection: "column",
-  },
-  loginTitle: {
-    fontSize: "2.8rem",
-    fontWeight: 400,
-    marginBottom: "2rem",
-  },
-  loginLabel: {
-    fontSize: "1.3rem",
-    fontWeight: 700,
-  },
-  inputForm: {
-    display: "flex",
-    flexDirection: "column",
-    marginBottom: "2rem",
-    "& input": {
-      height: "3rem",
-      borderRadius: 3,
-      border: "1px solid #aaa",
-      fontSize: "1.4rem",
-      padding: "0 1rem",
-      "&:focus": {
-        outlineColor: "orange",
-      },
-    },
-  },
-  divider: {
-    color: "#767676",
-    fontSize: "1.3rem",
-    textAlign: "center",
-    position: "relative",
-    marginBottom: "2rem",
-  },
-  dividerLink: {
-    color: "#0066c0",
-    "&:hover": {
-      textDecoration: "underline",
-    },
-  },
-  formCopy: {
-    fontSize: "1.2rem",
-    marginTop: "2rem",
-  },
-});
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
+import { createUser } from "../../firebase/firebase";
 
 const validate = (values) => {
   const errors = {};
   if (!values.name) {
-    errors.name = "Required";
+    errors.name = "Nom invalide";
   } else if (values.name.length > 15) {
-    errors.name = "Must be 15 characters or less";
+    errors.name = "Maximum 15 caractères";
   }
 
   if (!values.email) {
-    errors.email = "Required";
+    errors.email = "Email invalide";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Invalid email address";
+    errors.email = "Email invalide";
   }
 
   if (!values.password) {
-    errors.password = "Requis";
+    errors.password = "Mot de passe invalide";
   } else if (values.password.length < 6) {
     errors.password = "Minimum 6 caractères.";
   }
 
   if (!values.repeatPassword) {
-    errors.repeatPassword = "Requis";
+    errors.repeatPassword = "Repeter mot de passe";
   } else if (values.repeatPassword !== values.password) {
     errors.repeatPassword = "Mots de passe ne correspondent pas!";
   }
@@ -115,7 +48,7 @@ const Register = () => {
     },
     validate,
     onSubmit: (values) => {
-      alert("It worked");
+      createUser(values.email, values.password);
     },
   });
 
@@ -137,18 +70,30 @@ const Register = () => {
                 onChange={formik.handleChange}
                 name="name"
                 type="text"
+                onBlur={formik.handleBlur}
               />
+              {formik.touched.name && formik.errors.name && (
+                <h1 className={classes.errorsForm}>
+                  <ErrorOutlineIcon />
+                  {formik.errors.name}
+                </h1>
+              )}
             </div>
-            {formik.errors.name && <h1>{formik.errors.name}</h1>}
             <div className={classes.inputForm}>
-              <label className={classes.loginLabel}>E-email</label>
+              <label className={classes.loginLabel}>Email</label>
               <input
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 name="email"
                 type="email"
+                onBlur={formik.handleBlur}
               />
-              {formik.errors.email && <h1>{formik.errors.email}</h1>}
+              {formik.touched.email && formik.errors.email && (
+                <h1 className={classes.errorsForm}>
+                  <ErrorOutlineIcon />
+                  {formik.errors.email}
+                </h1>
+              )}
             </div>
             <div className={classes.inputForm}>
               <label className={classes.loginLabel}>Mot de passe</label>
@@ -157,8 +102,14 @@ const Register = () => {
                 onChange={formik.handleChange}
                 name="password"
                 type="password"
+                onBlur={formik.handleBlur}
               />
-              {formik.errors.password && <h1>{formik.errors.password}</h1>}
+              {formik.touched.password && formik.errors.password && (
+                <h1 className={classes.errorsForm}>
+                  <ErrorOutlineIcon />
+                  {formik.errors.password}
+                </h1>
+              )}
             </div>
             <div className={classes.inputForm}>
               <label className={classes.loginLabel}>
@@ -169,8 +120,14 @@ const Register = () => {
                 onChange={formik.handleChange}
                 name="repeatPassword"
                 type="password"
+                onBlur={formik.handleBlur}
               />
-              {formik.errors.repeatPassword && <h1>{formik.errors.repeatPassword}</h1>}
+              {formik.touched.repeatPassword && formik.errors.repeatPassword && (
+                <h1 className={classes.errorsForm}>
+                  <ErrorOutlineIcon />
+                  {formik.errors.repeatPassword}
+                </h1>
+              )}
             </div>
             <CustomButton type="submit" text="Créer votre compte Amazon" />
             <p className={classes.formCopy}>
