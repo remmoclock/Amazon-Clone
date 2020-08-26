@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core";
 import CurrencyFormat from "react-currency-format";
 import CustomButton from "../../components/CustomButton/CustomButton";
