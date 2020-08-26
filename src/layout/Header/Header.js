@@ -7,7 +7,8 @@ import { auth } from "../../firebase/firebase";
 
 const useStyles = makeStyles({
   appbar: {
-    backgroundColor: "#000",
+    // backgroundColor: "#000",
+    backgroundColor: "#232f3f",
     position: "sticky",
     top: 0,
   },
