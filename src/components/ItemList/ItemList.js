@@ -10,17 +10,15 @@ const styles = makeStyles({
   },
 });
 
-function ItemList() {
+function ItemList({addItem}) {
   const classes = styles();
   return (
     <Grid className={classes.itemList} container spacing={3}>
       {data.map((item) => (
         <Grid key={item.id} item md={3}>
           <Item
-            imageURL={item.imageURL}
-            price={item.price}
-            name={item.name}
-            rating={item.rating}
+          addItem={addItem}
+            item={item}
           />
         </Grid>
       ))}

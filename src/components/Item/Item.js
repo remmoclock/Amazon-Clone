@@ -1,46 +1,27 @@
 import React from "react";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import {
-  makeStyles,
   Card,
   CardActionArea,
   CardContent,
   CardActions,
 } from "@material-ui/core";
 import CustomButton from "../CustomButton/CustomButton";
+import { useStyles } from "./ItemStyles";
 
-const styles = makeStyles({
-  card: {
-    display: "flex",
-    flexDirection: "column",
-    minHeight: "47rem",
-    justifyContent: "space-between",
-  },
-  cardImg: {
-    height: "20rem",
-    objectFit: "contain",
-  },
-  cardButton: {
-    width: "100%",
-  },
-  cardPrice: {
-    fontSize: "2rem",
-    marginBottom: "2rem",
-  },
-  cardDescription: {
-    fontWeight: 400,
-    fontSize: "1.3rem",
-    marginBottom: "2rem",
-  },
-  cardStar: {
-    fill: "#f3cf77",
-    height: "2rem",
-    width: "2rem",
-  },
-});
+function Item({ item , addItem }) {
+  const { imageURL, price, name, rating } = item
+  const classes = useStyles();
 
-function Item({ imageURL, price, name, rating }) {
-  const classes = styles();
+  // FUCTIONS
+  const addToBasket = (item) => {
+    addItem({
+      ...item,
+      quantity: 1
+    })
+  }
+
+
   return (
     <Card className={classes.card}>
       <CardActionArea>
@@ -60,6 +41,7 @@ function Item({ imageURL, price, name, rating }) {
           style={{ width: "100%" }}
           className={classes.cardButton}
           text="Ajouter au panier"
+          onClick={() => addToBasket(item)}
         />
       </CardActions>
     </Card>

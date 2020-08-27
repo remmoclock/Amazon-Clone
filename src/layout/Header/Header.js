@@ -1,41 +1,22 @@
 import React from "react";
-import { AppBar, Toolbar, Button, makeStyles } from "@material-ui/core";
+import { AppBar, Toolbar, Button } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import AmazonLogo from "../../assets/amazon-logo.png";
 import { Link, withRouter } from "react-router-dom";
 import { auth } from "../../firebase/firebase";
+import { useStyles } from "./HeaderStyles";
 
-const useStyles = makeStyles({
-  appbar: {
-    // backgroundColor: "#000",
-    backgroundColor: "#232f3f",
-    position: "sticky",
-    top: 0,
-  },
-  amazonLogo: {
-    height: "5rem",
-  },
-  buttons: {
-    marginLeft: "auto",
-  },
-  appBarButton: {
-    textTransform: "inherit",
-    textAlign: "left",
-    "& span": {
-      display: "block",
-    },
-  },
-});
-
-const Header = ({ user, history }) => {
+const Header = ({ user, history, basket }) => {
   // HOOKS
   const classes = useStyles();
 
   // FUNCTIONS
   const signOut = () => {
     auth.signOut();
-    history.push('/')
+    history.push("/");
   };
+
+  
 
   // JSX
   return (
@@ -46,7 +27,11 @@ const Header = ({ user, history }) => {
         </Link>
         <div className={classes.buttons}>
           {user ? (
-            <Button onClick={signOut} className={classes.appBarButton} color="inherit">
+            <Button
+              onClick={signOut}
+              className={classes.appBarButton}
+              color="inherit"
+            >
               <span>Bonjour, {user.email}</span>
               <span>Se déconnecter</span>
             </Button>
@@ -61,8 +46,14 @@ const Header = ({ user, history }) => {
               <span>Se connecter</span>
             </Button>
           )}
-          <Button className={classes.appBarButton} color="inherit">
-            <ShoppingCartIcon /> Panier
+          <Button
+            component={Link}
+            to="/checkout"
+            className={classes.appBarButton}
+            color="inherit"
+          >
+            <ShoppingCartIcon /> Panier{" "}
+            <div className={classes.cardCount}>{basket.length}</div>
           </Button>
         </div>
       </Toolbar>

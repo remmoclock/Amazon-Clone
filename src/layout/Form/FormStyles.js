@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core";
+
 export const useStyles = makeStyles({
   login: {
     height: "100vh",
@@ -18,12 +19,9 @@ export const useStyles = makeStyles({
     border: "1px solid #ccc",
     borderRadius: 3,
     marginBottom: "3rem",
-  },
-  loginForm: {
-    width: "100%",
-    padding: "2rem",
     display: "flex",
     flexDirection: "column",
+    padding: "2rem",
   },
   loginTitle: {
     fontSize: "2.8rem",
@@ -55,16 +53,6 @@ export const useStyles = makeStyles({
     textAlign: "center",
     position: "relative",
     marginBottom: "2rem",
-  },
-  dividerLink: {
-    color: "#0066c0",
-    "&:hover": {
-      textDecoration: "underline",
-    },
-  },
-  formCopy: {
-    fontSize: "1.2rem",
-    marginTop: "2rem",
   },
   errorsForm: {
     color: "#D8000C",
