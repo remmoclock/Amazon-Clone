@@ -9,18 +9,9 @@ import {
 import CustomButton from "../CustomButton/CustomButton";
 import { useStyles } from "./ItemStyles";
 
-function Item({ item , addItem }) {
-  const { imageURL, price, name, rating } = item
+function Item({ item, addItem }) {
+  const { imageURL, price, name, rating } = item;
   const classes = useStyles();
-
-  // FUCTIONS
-  const addToBasket = (item) => {
-    addItem({
-      ...item,
-      quantity: 1
-    })
-  }
-
 
   return (
     <Card className={classes.card}>
@@ -29,7 +20,7 @@ function Item({ item , addItem }) {
           <img className={classes.cardImg} src={imageURL} alt="" />
         </div>
         <CardContent>
-          <h1 className={classes.cardPrice}>{price}</h1>
+          <h1 className={classes.cardPrice}>{price} €</h1>
           <h2 className={classes.cardDescription}>{name}</h2>
           {new Array(rating).fill().map((star, index) => (
             <StarRateIcon className={classes.cardStar} key={index} />
@@ -41,7 +32,7 @@ function Item({ item , addItem }) {
           style={{ width: "100%" }}
           className={classes.cardButton}
           text="Ajouter au panier"
-          onClick={() => addToBasket(item)}
+          onClick={() => addItem(item)}
         />
       </CardActions>
     </Card>

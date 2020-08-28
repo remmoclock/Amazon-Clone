@@ -3,12 +3,12 @@ import backgroundImage from "../../assets/home-fade.png";
 import ItemList from "../../components/ItemList/ItemList";
 import { useStyles } from "./HomeStyles";
 
-const Home = ({addItem}) => {
+const Home = ({addItem, basket, removeItem}) => {
   const classes = useStyles();
   return (
     <div className={classes.home}>
       <img className={classes.homePic} src={backgroundImage} alt="" />
-      <ItemList addItem={addItem} />
+      <ItemList basket={basket} addItem={addItem} removeItem={removeItem} />
     </div>
   );
 };

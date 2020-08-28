@@ -17,9 +17,18 @@ const App = () => {
   const [basket, setBasket] = useStorageState(localStorage, "basket", []);
 
   // FUNCTIONS
-  const addItem = (item) => {
-    setBasket([...basket, item]);
-    console.log(basket);
+  const addItem = (itemToAdd) => {
+    const existing = basket.find((item) => item.id === itemToAdd.id);
+    if (existing) {
+      return basket.map((item) =>
+        item.id === itemToAdd.id ? { ...item, quantity: item.quantity++ } : item
+      );
+    }
+    setBasket([...basket, { ...itemToAdd, quantity: 1 }]);
+  };
+
+  const removeItem = (itemToRemove) => {
+    setBasket(basket.filter((item) => item.id !== itemToRemove.id));
   };
 
   useEffect(() => {
@@ -41,11 +50,14 @@ const App = () => {
     <BrowserRouter>
       <Header basket={basket} user={utilisateurs} />
       <Route exact path="/">
-        <Home addItem={addItem} />
+        <Home removeItem={removeItem} addItem={addItem} basket={basket} />
       </Route>
       <Route path="/login" component={Form} />
       <Route path="/register" component={Register} />
-      <Route path="/checkout" render={() => <Checkout basket={basket} />} />
+      <Route
+        path="/checkout"
+        render={() => <Checkout removeItem={removeItem} basket={basket} />}
+      />
       <Footer />
     </BrowserRouter>
   );

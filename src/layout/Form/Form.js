@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import { loginUser } from "../../firebase/firebase";
 import { useStyles } from "./FormStyles";
+import {signGoogle} from "../../firebase/firebase";
 
 // VALIDATION
 const validate = (values) => {
@@ -86,7 +87,7 @@ const Form = ({ history }) => {
               <CustomButton type="submit" text="S'identifier" />
             </div>
           </form>
-          <CustomButton text="S'identifier avec Google" />
+          <CustomButton  onClick={() => signGoogle()} text="S'identifier avec Google" />
         </div>
         <div className={classes.divider}>
           <span>Nouveau chez Amazon ?</span>

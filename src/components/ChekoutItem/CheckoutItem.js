@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CheckoutItem = ({ item }) => {
+const CheckoutItem = ({ item , removeItem }) => {
   const classes = useStyles();
   return (
     <div className={classes.checkoutItem}>
@@ -64,7 +64,8 @@ const CheckoutItem = ({ item }) => {
       <div className={classes.nameItem}>
         <h1>{item.name}</h1>
         <p>Quantité: {item.quantity}</p>
-        <CustomButton text="Supprimer du panier" />
+        <CustomButton text="Supprimer du panier" onClick={() => removeItem(item)}/>
+
       </div>
       <div className={classes.priceItem}>
         <CurrencyFormat

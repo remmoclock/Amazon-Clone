@@ -4,7 +4,7 @@ import CustomButton from "../../components/CustomButton/CustomButton";
 import { useStyles } from "./CheckoutStyles";
 import CheckoutItem from "../../components/ChekoutItem/CheckoutItem";
 
-const Checkout = ({ basket }) => {
+const Checkout = ({ basket , removeItem}) => {
   const classes = useStyles();
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const Checkout = ({ basket }) => {
           <h3>Prix</h3>
         </div>
         {basket.map((item, index) => (
-          <CheckoutItem key={index} item={item} />
+          <CheckoutItem key={index} item={item} removeItem={removeItem} />
         ))}
       </div>
       <div style={{ width: "28%" }}>
