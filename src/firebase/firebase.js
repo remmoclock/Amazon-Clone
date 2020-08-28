@@ -27,11 +27,11 @@ export const loginUser = (email, password) => {
     .catch((error) => console.error(error));
 };
 
-export const signGoogle = async() => {
+export const signGoogle = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   try {
-    await auth.signInWithPopup(provider)
+    await auth.signInWithPopup(provider);
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
   }
-}
+};

@@ -87,7 +87,7 @@ const Form = ({ history }) => {
               <CustomButton type="submit" text="S'identifier" />
             </div>
           </form>
-          <CustomButton  onClick={() => signGoogle()} text="S'identifier avec Google" />
+          <CustomButton onClick={() => signGoogle()} text="S'identifier avec Google" />
         </div>
         <div className={classes.divider}>
           <span>Nouveau chez Amazon ?</span>

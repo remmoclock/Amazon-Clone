@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import CurrencyFormat from "react-currency-format";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import { useStyles } from "./CheckoutStyles";
-import CheckoutItem from "../../components/ChekoutItem/CheckoutItem";
+import CheckoutItem from "../../components/CheckoutItem/CheckoutItem";
 
-const Checkout = ({ basket , removeItem}) => {
+const Checkout = ({ basket, removeItem }) => {
   const classes = useStyles();
 
   useEffect(() => {
@@ -12,11 +12,14 @@ const Checkout = ({ basket , removeItem}) => {
   }, []);
 
   const totalPrice = () => {
-    const prices = []
-    basket.map(item => prices.push(item.price * item.quantity))
-    const totalPrice = prices.reduce((initValues, accumulator) => initValues + accumulator, 0)
-    return totalPrice
-  }
+    const prices = [];
+    basket.map((item) => prices.push(item.price * item.quantity));
+    const totalPrice = prices.reduce(
+      (initValues, accumulator) => initValues + accumulator,
+      0
+    );
+    return totalPrice;
+  };
 
   return (
     <div className={classes.checkout}>

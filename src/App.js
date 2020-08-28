@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Header from "./layout/Header/Header";
-
-import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
+import { BrowserRouter, Route } from "react-router-dom";
+import Header from "./layout/Header/Header";
 import Home from "./layout/Home/Home";
 import Footer from "./layout/Footer/Footer";
 import Form from "./layout/Form/Form";
 import Register from "./layout/Register/Register";
+import Checkout from "./layout/Checkout/Checkout";
 import { auth } from "./firebase/firebase";
-import Checkout from "./layout/Checkout/Chekout";
 import { useStorageState } from "react-storage-hooks";
 
 const App = () => {

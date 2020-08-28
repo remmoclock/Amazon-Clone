@@ -1,8 +1,6 @@
 import React from "react";
 import amazonLogo from "../../assets/amazon-logo.png";
-import {useStyles} from "./FooterSyles";
-
-
+import { useStyles } from "./FooterSyles";
 
 const Footer = () => {
   const classes = useStyles();
@@ -50,7 +48,7 @@ const Footer = () => {
             <span role="img" aria-label="heart">
               💗
             </span>{" "}
-            by Julien Delusseau
+            by Remmo Ahmad
           </p>
           <p className={classes.footerCopyMuted}>
             Clone du website Amazon - Projet personnel à but non lucratif

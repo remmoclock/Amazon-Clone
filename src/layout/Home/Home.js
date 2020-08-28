@@ -1,9 +1,9 @@
 import React from "react";
-import backgroundImage from "../../assets/home-fade.png";
+import backgroundImage from "../../assets/amazon-bg.jpg"; 
 import ItemList from "../../components/ItemList/ItemList";
 import { useStyles } from "./HomeStyles";
 
-const Home = ({addItem, basket, removeItem}) => {
+const Home = ({ addItem, basket, removeItem }) => {
   const classes = useStyles();
   return (
     <div className={classes.home}>

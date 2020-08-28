@@ -16,14 +16,12 @@ const Header = ({ user, history, basket }) => {
     history.push("/");
   };
 
-  
-
   // JSX
   return (
     <AppBar position="static" className={classes.appbar}>
       <Toolbar>
         <Link to="/">
-          <img src={AmazonLogo} className={classes.amazonLogo} alt="" />
+          <img src={AmazonLogo} className={classes.amazonLogo} alt="logo" />
         </Link>
         <div className={classes.buttons}>
           {user ? (

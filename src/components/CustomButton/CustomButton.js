@@ -6,6 +6,7 @@ const styles = makeStyles({
     backgroundColor: "#f3cf77",
     border: "1px solid #ccc",
     borderRadius: 1,
+    cursor: "pointer",
     padding: "1rem 0",
     "&:hover": {
       backgroundColor: "#f0c350",

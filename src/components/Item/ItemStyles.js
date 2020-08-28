@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme) => ({
   card: {
     display: "flex",
     flexDirection: "column",
-    minHeight: "47rem",
+    minHeight: "45rem",
     justifyContent: "space-between",
     [theme.breakpoints.down("sm")]: {
       maxWidth: "80%",
@@ -14,6 +14,7 @@ export const useStyles = makeStyles((theme) => ({
   cardImg: {
     height: "20rem",
     objectFit: "contain",
+    
   },
   cardButton: {
     width: "100%",

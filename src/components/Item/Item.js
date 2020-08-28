@@ -17,7 +17,7 @@ function Item({ item, addItem }) {
     <Card className={classes.card}>
       <CardActionArea>
         <div style={{ padding: "2rem" }}>
-          <img className={classes.cardImg} src={imageURL} alt="" />
+          <img className={classes.cardImg} src={imageURL} alt={classes.name} />
         </div>
         <CardContent>
           <h1 className={classes.cardPrice}>{price} €</h1>

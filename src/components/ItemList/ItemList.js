@@ -5,7 +5,8 @@ import { data } from "../../data/data";
 
 const styles = makeStyles((theme) => ({
   itemList: {
-    marginTop: "-20rem",
+    padding: "0.2rem",
+    marginTop: "-25rem",
     marginBottom: "4rem",
     [theme.breakpoints.down("sm")]: {
       marginTop: "-10rem",
