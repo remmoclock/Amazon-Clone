@@ -61,7 +61,7 @@ export const data = [
     id: uuidv4(),
     imageURL:
       "https://m.media-amazon.com/images/I/81TKl0XuK9L._AC._SR360,460.jpg",
-    price: 34.99,
+    price: 54.99,
     name: "Echo Dot (3ème génération), Enceinte connectée avec horloge",
     rating: 5,
   },
