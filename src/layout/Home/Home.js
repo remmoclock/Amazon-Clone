@@ -1,5 +1,5 @@
 import React from "react";
-import backgroundImage from "../../assets/amazon-bg.jpg"; 
+import backgroundImage from "../../assets/amazon-bg.png";
 import ItemList from "../../components/ItemList/ItemList";
 import { useStyles } from "./HomeStyles";
 
