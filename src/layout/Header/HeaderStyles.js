@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core"
 
 export const useStyles = makeStyles({
   appbar: {
@@ -14,6 +14,7 @@ export const useStyles = makeStyles({
   },
   appBarButton: {
     textTransform: "inherit",
+    fontSize: '1.1rem',
     textAlign: "left",
     "& span": {
       display: "block",
@@ -25,4 +26,4 @@ export const useStyles = makeStyles({
     marginLeft: 10,
     fontSize: "1.6rem",
   },
-});
+})

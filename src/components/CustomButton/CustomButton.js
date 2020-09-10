@@ -15,12 +15,25 @@ const styles = makeStyles({
       outline: "none",
     },
   },
+  google: {
+    backgroundColor: "#4185f4",
+    border: "1px solid #ccc",
+    borderRadius: 1,
+    cursor: "pointer",
+    padding: "1rem 0",
+    "&:hover": {
+      backgroundColor: "#0226c3",
+    },
+    "&:focus": {
+      outline: "none",
+    },
+  },
 });
 
-const CustomButton = ({ text, ...otherProps }) => {
+const CustomButton = ({ text, isGoogle, ...otherProps }) => {
   const classes = styles();
   return (
-    <button {...otherProps} className={classes.customButton}>
+    <button {...otherProps} className={isGoogle ? classes.google : classes.customButton}>
       {text}
     </button>
   );
