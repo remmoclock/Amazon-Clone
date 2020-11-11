@@ -5,6 +5,7 @@ export const useStyles = makeStyles((theme) => ({
     padding: "3rem 2rem",
     backgroundColor: "#fff",
     display: "flex",
+    minHeight: "100vh",
     justifyContent: "space-between",
     [theme.breakpoints.down("sm")]: {
       padding: "3rem 0.5rem",
